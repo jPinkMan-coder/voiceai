@@ -65,71 +65,76 @@ export function ConvAI() {
     return "Disconnected";
   };
 
+  const getOrbClasses = () => {
+    const baseClasses = "w-48 h-48 rounded-full relative transition-all duration-1000 ease-in-out";
+    const gradientBase = "bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600";
+    const shadow = "shadow-2xl";
+    
+    if (conversation.status === "connected") {
+      if (conversation.isSpeaking) {
+        return `${baseClasses} ${gradientBase} ${shadow} shadow-cyan-400/50 animate-pulse scale-110`;
+      } else {
+        return `${baseClasses} ${gradientBase} ${shadow} shadow-blue-400/40 animate-bounce`;
+      }
+    }
+    return `${baseClasses} bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 ${shadow} shadow-slate-500/20`;
+  };
   return (
-    <>
-      {/* Animated Background */}
-      <div className="tech-background" />
-      <div className="particles">
-        {[...Array(9)].map((_, i) => (
-          <div key={i} className="particle" />
-        ))}
-      </div>
-
-      <div className="flex justify-center items-center min-h-screen px-4">
-        <Card className="ai-card rounded-3xl max-w-md w-full">
-          <CardContent className="p-8">
-            <CardHeader className="p-0 mb-8">
-              <CardTitle className="text-center">
-                <div className="flex items-center justify-center mb-4">
-                  {conversation.status === "connected" && (
-                    <div className="status-indicator" />
-                  )}
-                  <span className="status-text">
-                    {getStatusText()}
-                  </span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            
-            <div className="flex flex-col items-center gap-8">
-              {/* 3D Glowing Orb */}
-              <div
-                className={cn(
-                  "orb-3d",
-                  conversation.status === "connected" && conversation.isSpeaking
-                    ? "orb-active"
-                    : conversation.status === "connected"
-                    ? "orb-listening"
-                    : ""
+    <div className="flex justify-center items-center min-h-screen px-4">
+      <Card className="backdrop-blur-xl bg-slate-900/80 border-cyan-500/30 rounded-3xl max-w-md w-full shadow-2xl shadow-cyan-500/20">
+        <CardContent className="p-8">
+          <CardHeader className="p-0 mb-8">
+            <CardTitle className="text-center">
+              <div className="flex items-center justify-center mb-4">
+                {conversation.status === "connected" && (
+                  <div className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse shadow-lg shadow-green-400/50" />
                 )}
-              />
-
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-4 w-full">
-                <Button
-                  className="ai-button rounded-full py-3 px-8"
-                  size="lg"
-                  disabled={
-                    conversation !== null && conversation.status === "connected"
-                  }
-                  onClick={startConversation}
-                >
-                  Initialize Connection
-                </Button>
-                <Button
-                  className="ai-button rounded-full py-3 px-8"
-                  size="lg"
-                  disabled={conversation === null || conversation.status !== "connected"}
-                  onClick={stopConversation}
-                >
-                  Terminate Session
-                </Button>
+                <span className="text-cyan-300 font-bold text-xl tracking-wider uppercase">
+                  {getStatusText()}
+                </span>
+              </div>
+            </CardTitle>
+          </CardHeader>
+          
+          <div className="flex flex-col items-center gap-8">
+            {/* Animated Orb */}
+            <div className="relative">
+              <div className={getOrbClasses()}>
+                {/* Inner glow effect */}
+                <div className="absolute inset-4 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
+                {/* Outer ring for connected state */}
+                {conversation.status === "connected" && (
+                  <div className="absolute -inset-2 rounded-full border-2 border-cyan-400/50 animate-spin" 
+                       style={{ animationDuration: '3s' }} />
+                )}
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-4 w-full">
+              <Button
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
+                size="lg"
+                disabled={
+                  conversation !== null && conversation.status === "connected"
+                }
+                onClick={startConversation}
+              >
+                Initialize Connection
+              </Button>
+              <Button
+                className="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-400 hover:to-pink-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-red-500/25 hover:shadow-red-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
+                size="lg"
+                disabled={conversation === null || conversation.status !== "connected"}
+                onClick={stopConversation}
+              >
+                Terminate Session
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
     </div>
   );
 }
