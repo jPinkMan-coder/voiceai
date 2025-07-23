@@ -62,3 +62,4 @@ lib/
 android/src/main/res/raw/credential.json
 
 example/android/app/google-services.json
+.env
