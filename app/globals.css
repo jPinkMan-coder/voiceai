@@ -57,7 +57,12 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 50%, #0f1419 100%);
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 60%, #1e293b 100%);
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+    background-attachment: fixed;
 }
 
 .tech-background::before {
@@ -68,10 +73,10 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(100, 200, 255, 0.05) 0%, transparent 50%);
-    animation: backgroundPulse 8s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+    animation: backgroundPulse 12s ease-in-out infinite;
 }
 
 .particles {
@@ -88,9 +93,10 @@ body {
     position: absolute;
     width: 2px;
     height: 2px;
-    background: rgba(0, 255, 255, 0.6);
+    background: rgba(16, 185, 129, 0.7);
     border-radius: 50%;
-    animation: float 6s ease-in-out infinite;
+    animation: float 8s ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(16, 185, 129, 0.5);
 }
 
 .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
@@ -129,16 +135,17 @@ body {
     height: 200px;
     border-radius: 50%;
     position: relative;
-    background: radial-gradient(circle at 30% 30%, 
-        rgba(0, 255, 255, 0.8) 0%, 
-        rgba(0, 150, 255, 0.6) 30%, 
-        rgba(0, 100, 200, 0.4) 60%, 
-        rgba(0, 50, 150, 0.2) 100%);
+    background: radial-gradient(circle at 35% 35%, 
+        rgba(16, 185, 129, 0.9) 0%, 
+        rgba(34, 197, 94, 0.7) 25%, 
+        rgba(59, 130, 246, 0.5) 50%, 
+        rgba(30, 64, 175, 0.3) 75%, 
+        rgba(15, 23, 42, 0.8) 100%);
     box-shadow: 
-        0 0 50px rgba(0, 255, 255, 0.5),
-        0 0 100px rgba(0, 255, 255, 0.3),
-        0 0 150px rgba(0, 255, 255, 0.1),
-        inset 0 0 50px rgba(255, 255, 255, 0.1);
+        0 0 40px rgba(16, 185, 129, 0.4),
+        0 0 80px rgba(34, 197, 94, 0.3),
+        0 0 120px rgba(59, 130, 246, 0.2),
+        inset 0 0 40px rgba(255, 255, 255, 0.15);
     animation: orbFloat 4s ease-in-out infinite;
 }
 
@@ -163,29 +170,36 @@ body {
     bottom: -20px;
     border-radius: 50%;
     background: conic-gradient(from 0deg, 
-        rgba(0, 255, 255, 0.1), 
-        rgba(0, 150, 255, 0.2), 
-        rgba(0, 255, 255, 0.1));
+        rgba(16, 185, 129, 0.15), 
+        rgba(34, 197, 94, 0.25), 
+        rgba(59, 130, 246, 0.15), 
+        rgba(16, 185, 129, 0.15));
     animation: orbRotate 8s linear infinite;
     z-index: -1;
 }
 
 .orb-active {
-    animation: orbPulse 0.8s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+    animation: orbPulse 1.2s ease-in-out infinite, orbFloat 4s ease-in-out infinite, orbGlow 2s ease-in-out infinite;
     box-shadow: 
-        0 0 60px rgba(0, 255, 255, 0.8),
-        0 0 120px rgba(0, 255, 255, 0.5),
-        0 0 180px rgba(0, 255, 255, 0.3),
-        inset 0 0 50px rgba(255, 255, 255, 0.2);
+        0 0 50px rgba(16, 185, 129, 0.6),
+        0 0 100px rgba(34, 197, 94, 0.4),
+        0 0 150px rgba(59, 130, 246, 0.3),
+        inset 0 0 60px rgba(255, 255, 255, 0.2);
 }
 
 .orb-listening {
-    animation: orbBreath 2s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+    animation: orbBreath 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite, orbListening 4s ease-in-out infinite;
     box-shadow: 
-        0 0 40px rgba(0, 255, 100, 0.6),
-        0 0 80px rgba(0, 255, 100, 0.4),
-        0 0 120px rgba(0, 255, 100, 0.2),
-        inset 0 0 50px rgba(255, 255, 255, 0.15);
+        0 0 35px rgba(16, 185, 129, 0.5),
+        0 0 70px rgba(34, 197, 94, 0.3),
+        0 0 105px rgba(16, 185, 129, 0.2),
+        inset 0 0 45px rgba(255, 255, 255, 0.1);
+    background: radial-gradient(circle at 35% 35%, 
+        rgba(16, 185, 129, 1) 0%, 
+        rgba(34, 197, 94, 0.8) 25%, 
+        rgba(16, 185, 129, 0.6) 50%, 
+        rgba(34, 197, 94, 0.4) 75%, 
+        rgba(15, 23, 42, 0.9) 100%);
 }
 
 @keyframes orbFloat {
@@ -194,13 +208,25 @@ body {
 }
 
 @keyframes orbPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(1deg); }
+    50% { transform: scale(1.1) rotate(0deg); }
+    75% { transform: scale(1.05) rotate(-1deg); }
 }
 
 @keyframes orbBreath {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%, 100% { transform: scale(1) brightness(1); }
+    50% { transform: scale(1.03) brightness(1.1); }
+}
+
+@keyframes orbGlow {
+    0%, 100% { filter: brightness(1) saturate(1); }
+    50% { filter: brightness(1.2) saturate(1.3); }
+}
+
+@keyframes orbListening {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+    50% { filter: hue-rotate(10deg) brightness(1.1); }
 }
 
 @keyframes orbRotate {
@@ -251,12 +277,13 @@ body {
 /* Futuristic Buttons */
 .ai-button {
     background: linear-gradient(135deg, 
-        rgba(0, 255, 255, 0.1) 0%, 
-        rgba(0, 150, 255, 0.2) 50%, 
-        rgba(0, 100, 200, 0.1) 100%);
+        rgba(16, 185, 129, 0.15) 0%, 
+        rgba(34, 197, 94, 0.25) 30%, 
+        rgba(59, 130, 246, 0.2) 70%, 
+        rgba(16, 185, 129, 0.1) 100%);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    color: #00ffff;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: rgba(16, 185, 129, 0.9);
     font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
     font-size: 1rem;
@@ -265,6 +292,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
 }
 
 .ai-button::before {
@@ -276,20 +304,22 @@ body {
     height: 100%;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(0, 255, 255, 0.2), 
+        rgba(16, 185, 129, 0.3), 
         transparent);
     transition: left 0.5s ease;
 }
 
 .ai-button:hover {
     background: linear-gradient(135deg, 
-        rgba(0, 255, 255, 0.2) 0%, 
-        rgba(0, 150, 255, 0.3) 50%, 
-        rgba(0, 100, 200, 0.2) 100%);
-    border-color: rgba(0, 255, 255, 0.5);
+        rgba(16, 185, 129, 0.25) 0%, 
+        rgba(34, 197, 94, 0.35) 30%, 
+        rgba(59, 130, 246, 0.3) 70%, 
+        rgba(16, 185, 129, 0.2) 100%);
+    border-color: rgba(16, 185, 129, 0.6);
+    color: rgba(16, 185, 129, 1);
     box-shadow: 
-        0 0 20px rgba(0, 255, 255, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2);
+        0 0 25px rgba(16, 185, 129, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
 
@@ -298,9 +328,9 @@ body {
 }
 
 .ai-button:disabled {
-    background: rgba(100, 100, 100, 0.1);
-    border-color: rgba(100, 100, 100, 0.2);
-    color: rgba(255, 255, 255, 0.3);
+    background: rgba(71, 85, 105, 0.1);
+    border-color: rgba(71, 85, 105, 0.2);
+    color: rgba(148, 163, 184, 0.5);
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -317,7 +347,18 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .tech-background {
+        background-attachment: scroll;
+    }
+}
+
 @media (max-width: 768px) {
+    .tech-background {
+        background-size: 150% 150%, 150% 150%, 100% 100%;
+        background-position: center center, center center, center center;
+    }
+    
     .orb-3d {
         width: 150px;
         height: 150px;
@@ -335,6 +376,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    .tech-background {
+        background-size: 200% 200%, 200% 200%, 100% 100%;
+    }
+    
     .orb-3d {
         width: 120px;
         height: 120px;
