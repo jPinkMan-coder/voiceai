@@ -19,7 +19,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                 }
             >
                 <div className={"flex"}>
-                    <Link href={"/"} prefetch={true}>
+                    <Link href={"/"} prefetch={true} className="logo-glow">
                         <ElevenLabsLogo
                             className={"h-[15px] w-auto hover:text-gray-500"}
                         />
@@ -31,7 +31,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                         href="https://github.com/jonatanvm/convai-demo"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={"py-0.5"}
+                        className={"py-0.5 logo-glow"}
                         aria-label="View source on GitHub"
                     >
                         <GithubLogo

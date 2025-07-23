@@ -58,54 +58,78 @@ export function ConvAI() {
     await conversation.endSession();
   }, [conversation]);
 
-  return (
-    <div className={"flex justify-center items-center gap-x-4"}>
-      <Card className={"rounded-3xl"}>
-        <CardContent>
-          <CardHeader>
-            <CardTitle className={"text-center"}>
-              {conversation.status === "connected"
-                ? conversation.isSpeaking
-                  ? `Agent is speaking`
-                  : "Agent is listening"
-                : "Disconnected"}
-            </CardTitle>
-          </CardHeader>
-          <div className={"flex flex-col gap-y-4 text-center"}>
-            <div
-              className={cn(
-                "orb my-16 mx-12",
-                conversation.status === "connected" && conversation.isSpeaking
-                  ? "orb-active animate-orb"
-                  : conversation.status === "connected"
-                  ? "animate-orb-slow orb-inactive"
-                  : "orb-inactive"
-              )}
-            ></div>
+  const getStatusText = () => {
+    if (conversation.status === "connected") {
+      return conversation.isSpeaking ? "AI Speaking" : "Connected & Listening";
+    }
+    return "Disconnected";
+  };
 
-            <Button
-              variant={"outline"}
-              className={"rounded-full"}
-              size={"lg"}
-              disabled={
-                conversation !== null && conversation.status === "connected"
-              }
-              onClick={startConversation}
-            >
-              Start conversation
-            </Button>
-            <Button
-              variant={"outline"}
-              className={"rounded-full"}
-              size={"lg"}
-              disabled={conversation === null}
-              onClick={stopConversation}
-            >
-              End conversation
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+  return (
+    <>
+      {/* Animated Background */}
+      <div className="tech-background" />
+      <div className="particles">
+        {[...Array(9)].map((_, i) => (
+          <div key={i} className="particle" />
+        ))}
+      </div>
+
+      <div className="flex justify-center items-center min-h-screen px-4">
+        <Card className="ai-card rounded-3xl max-w-md w-full">
+          <CardContent className="p-8">
+            <CardHeader className="p-0 mb-8">
+              <CardTitle className="text-center">
+                <div className="flex items-center justify-center mb-4">
+                  {conversation.status === "connected" && (
+                    <div className="status-indicator" />
+                  )}
+                  <span className="status-text">
+                    {getStatusText()}
+                  </span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            
+            <div className="flex flex-col items-center gap-8">
+              {/* 3D Glowing Orb */}
+              <div
+                className={cn(
+                  "orb-3d",
+                  conversation.status === "connected" && conversation.isSpeaking
+                    ? "orb-active"
+                    : conversation.status === "connected"
+                    ? "orb-listening"
+                    : ""
+                )}
+              />
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-4 w-full">
+                <Button
+                  className="ai-button rounded-full py-3 px-8"
+                  size="lg"
+                  disabled={
+                    conversation !== null && conversation.status === "connected"
+                  }
+                  onClick={startConversation}
+                >
+                  Initialize Connection
+                </Button>
+                <Button
+                  className="ai-button rounded-full py-3 px-8"
+                  size="lg"
+                  disabled={conversation === null || conversation.status !== "connected"}
+                  onClick={stopConversation}
+                >
+                  Terminate Session
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
     </div>
   );
 }
