@@ -20,15 +20,28 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
               radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
               radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 70%)
             `,
-            backgroundSize: '150% 150%, 150% 150%, 200% 200%',
+            backgroundSize: '200% 200%, 200% 200%, 250% 250%',
             backgroundAttachment: 'fixed',
             backgroundPosition: 'center center, center center, center center'
           }}
-          className="flex flex-col flex-grow w-full items-center justify-center sm:px-4 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden
-            sm:bg-[length:150%_150%,150%_150%,200%_200%]
-            md:bg-[length:120%_120%,120%_120%,150%_150%]
-            lg:bg-[length:100%_100%,100%_100%,100%_100%]"
         >
+          <style jsx>{`
+            @media (max-width: 640px) {
+              div {
+                background-size: 200% 200%, 200% 200%, 250% 250% !important;
+              }
+            }
+            @media (min-width: 641px) and (max-width: 1024px) {
+              div {
+                background-size: 150% 150%, 150% 150%, 200% 200% !important;
+              }
+            }
+            @media (min-width: 1025px) {
+              div {
+                background-size: 100% 100%, 100% 100%, 150% 150% !important;
+              }
+            }
+          `}</style>
           {/* Animated particles */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {[...Array(20)].map((_, i) => (
