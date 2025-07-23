@@ -20,9 +20,14 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
               radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
               radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 70%)
             `,
-            backgroundSize: '100% 100%, 100% 100%, 100% 100%',
-            backgroundAttachment: 'fixed'
+            backgroundSize: '150% 150%, 150% 150%, 200% 200%',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center center, center center, center center'
           }}
+          className="flex flex-col flex-grow w-full items-center justify-center sm:px-4 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden
+            sm:bg-[length:150%_150%,150%_150%,200%_200%]
+            md:bg-[length:120%_120%,120%_120%,150%_150%]
+            lg:bg-[length:100%_100%,100%_100%,100%_100%]"
         >
           {/* Animated particles */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">

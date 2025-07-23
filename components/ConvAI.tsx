@@ -67,14 +67,14 @@ export function ConvAI() {
 
   const getOrbClasses = () => {
     const baseClasses = "w-48 h-48 rounded-full relative transition-all duration-1000 ease-in-out";
-    const gradientBase = "bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600";
+    const gradientBase = "bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600";
     const shadow = "shadow-2xl";
     
     if (conversation.status === "connected") {
       if (conversation.isSpeaking) {
-        return `${baseClasses} ${gradientBase} ${shadow} shadow-cyan-400/50 animate-pulse scale-110`;
+        return `${baseClasses} ${gradientBase} ${shadow} shadow-emerald-400/50 animate-pulse scale-110`;
       } else {
-        return `${baseClasses} ${gradientBase} ${shadow} shadow-blue-400/40 animate-bounce`;
+        return `${baseClasses} ${gradientBase} ${shadow} shadow-teal-400/40 animate-bounce`;
       }
     }
     return `${baseClasses} bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 ${shadow} shadow-slate-500/20`;
@@ -87,9 +87,9 @@ export function ConvAI() {
             <CardTitle className="text-center">
               <div className="flex items-center justify-center mb-4">
                 {conversation.status === "connected" && (
-                  <div className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse shadow-lg shadow-green-400/50" />
+                  <div className="w-3 h-3 bg-emerald-400 rounded-full mr-3 animate-pulse shadow-lg shadow-emerald-400/50" />
                 )}
-                <span className="text-cyan-300 font-bold text-xl tracking-wider uppercase">
+                <span className="text-emerald-300 font-bold text-xl tracking-wider uppercase">
                   {getStatusText()}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function ConvAI() {
                 <div className="absolute inset-4 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
                 {/* Outer ring for connected state */}
                 {conversation.status === "connected" && (
-                  <div className="absolute -inset-2 rounded-full border-2 border-cyan-400/50 animate-spin" 
+                  <div className="absolute -inset-2 rounded-full border-2 border-emerald-400/50 animate-spin" 
                        style={{ animationDuration: '3s' }} />
                 )}
               </div>
@@ -113,7 +113,7 @@ export function ConvAI() {
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 w-full">
               <Button
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
+                className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
                 size="lg"
                 disabled={
                   conversation !== null && conversation.status === "connected"
@@ -123,7 +123,7 @@ export function ConvAI() {
                 Initialize Connection
               </Button>
               <Button
-                className="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-400 hover:to-pink-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-red-500/25 hover:shadow-red-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
+                className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-semibold rounded-full py-3 px-8 shadow-lg shadow-orange-500/25 hover:shadow-orange-400/40 transition-all duration-300 hover:scale-105 disabled:from-slate-600 disabled:to-slate-700 disabled:shadow-none disabled:scale-100"
                 size="lg"
                 disabled={conversation === null || conversation.status !== "connected"}
                 onClick={stopConversation}
